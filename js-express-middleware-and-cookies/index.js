@@ -1,6 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 
 // invoking express will return a express "app" object
 const app = express();
@@ -37,6 +38,50 @@ app.use(express.static(path.join(__dirname, "public")));
 // Initialize morgan
 app.use(logger("dev"));
 
+// BODY  PARSER / URLENCODED
+// This middleware will decode the data that was submitted
+// from the forms using "POST" HTTP verb
+
+// when the "extended" option is set to 'true', it will allow
+// form data to take the shape of arrays
+app.use(express.urlencoded({ extended: true }));
+// It will modufy the 'request' object given to routes
+// by adding a property to it named 'body'
+// "req.body" will be an object containing the data from our forms
+
+// COOKIE PARSER
+app.use(cookieParser());
+// What cookieParser does as a middleware is modify the request and response
+// objects that are given to all of our routes. it adds a property to the
+// request object named 'cookies' which is an object itself of key-value
+// pairs. It adds a method to response object called cookie(), which
+// we will use to set cookies
+
+// Custom Middleware
+app.use((req, res, next) => {
+  console.log("cookies: ", req.cookies);
+  // Read cookies from the request using 'req.cookies'
+  // They're represented by an object whose properties are
+  // cookie-names and values associated with those properties are the
+  // corresponding cookie values.
+  next();
+});
+
+// Create a route for the root "/" path
+const COOKIE_MAX_AGE = 1000 * 60 * 60 * 24 * 7; // a week in milliseconds
+app.get("/", (req, res) => {
+  const cookieValue = "My new cookie";
+  res.cookie("myCookie", cookieValue, {
+    maxAge: COOKIE_MAX_AGE
+  });
+
+  res.render("welcome");
+});
+
+app.get("/sign_in", (req, res) => {
+  // render a view for sign_in and do the sign_in functionality
+});
+
 // recieves at least 2 arguments:
 // 1) PATH of the resource
 // 2) A callback: the callback has two parameters
@@ -45,6 +90,7 @@ app.use(logger("dev"));
 
 // Route to handle GET "/hello_world"
 app.get("/hello_world", (request, response) => {
+  // console.log("requestObject: ", request);
   // response.render() is used to render out a view, it accepts 3 arguments:
   // 1) the path to the view starting from the configured directory, in this case it's "/views"
   // 2) locals object
