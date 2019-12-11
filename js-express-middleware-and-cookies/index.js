@@ -64,6 +64,13 @@ app.use((req, res, next) => {
   // They're represented by an object whose properties are
   // cookie-names and values associated with those properties are the
   // corresponding cookie values.
+
+  const username = req.cookies.username;
+
+  res.locals.signInUser = username || "";
+
+  console.log("res.locals: ", res.locals);
+
   next();
 });
 
@@ -78,8 +85,25 @@ app.get("/", (req, res) => {
   res.render("welcome");
 });
 
+// sign_in page route
 app.get("/sign_in", (req, res) => {
-  // render a view for sign_in and do the sign_in functionality
+  res.render("signInPage");
+});
+
+// sign_in post route
+app.post("/sign_in", (req, res) => {
+  // const username = req.body.username;
+  const { username } = req.body;
+  res.cookie("username", username, { maxAge: COOKIE_MAX_AGE });
+
+  res.redirect("/");
+});
+
+// Sign Out route
+
+app.post("/sign_out", (req, res) => {
+  res.clearCookie("username");
+  res.redirect("/");
 });
 
 // recieves at least 2 arguments:
@@ -105,7 +129,7 @@ app.get("/survey", (req, res) => {
 
 // Handler for GET "/submit"
 app.get("/submit", (req, res) => {
-  console.log(req.query);
+  // console.log(req.query);
   res.render("submit", {
     query: req.query,
     subHeading: "thank you!"
