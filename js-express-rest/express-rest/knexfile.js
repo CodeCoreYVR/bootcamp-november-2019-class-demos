@@ -3,6 +3,17 @@
 module.exports = {
   development: {
     client: "pg",
-    connection: "postgres://localhost/express-rest"
+    connection: {
+      // username: "your postgres username",
+      // password: "your postgres password",
+      database: "express-rest"
+    },
+    migrations: {
+      tableName: "migrations",
+      directory: "./db/migrations"
+    },
+    seeds: {
+      directory: "./db/seeds"
+    }
   }
 };
