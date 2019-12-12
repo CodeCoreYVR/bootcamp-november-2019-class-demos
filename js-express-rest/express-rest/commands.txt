@@ -1,0 +1,16 @@
+  562  git status
+  563  open .
+  564  npm start
+  565  npm i
+  566  npm start
+  567  cd ..
+  568  git status
+  569  git status
+  570  npm i --save-dev nodemon
+  571  git add .
+  572  git commit -m 'remove extra directories and create connection string and api & db directories'
+  573  git add .
+  574  git status
+  575  git commit -m 'Add Queries'
+  576  knex migrate:latest
+  577  history
