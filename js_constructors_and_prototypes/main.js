@@ -266,6 +266,16 @@ class Counter {
 }
 
 const counter1 = new Counter(20, 5);
+counter1.inc();
+counter1.inc();
+counter1.inc();
+counter1.inc();
+counter1.inc();
+counter1.dec();
+counter1.setStep(10);
+counter1.now();
+
+
 
 // console.log('Inside Script: ', this);
 // 'this' outside a method will be the global
