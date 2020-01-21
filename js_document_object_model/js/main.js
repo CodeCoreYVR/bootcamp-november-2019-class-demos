@@ -50,3 +50,10 @@ toxicTim.parentElement.parentElement.parentElement; // teams
 document.querySelector("html").firstElementChild; // returns the first child to HTML
 
 document.querySelector("html").lastElementChild; // returns the last child to HTML Document
+
+// Match
+toxicTim.matches("h1"); // false
+toxicTim.matches("#toxic-tim"); // true
+toxicTim.matches("div"); // true
+toxicTim.matches(".doggo.fighter"); // true
+toxicTim.matches(".dsalfkjsalkf"); // false
