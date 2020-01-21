@@ -89,4 +89,22 @@ teamSalmon.innerText; // returns all of the content within the HTML tags
 
 // The versions with .outer are nearly the same, except they include the node itself as well
 
+// Updating IDs & Classes
+toxicTim.id; // #toxic-tim
+toxicTim.classList; //  ["doggo", "fighter", value: "doggo fighter"]
+toxicTim.className; // "doggo fighter"
+toxicTim.href; // undefined because, toxicTim doesn't have 'href' attribute
 
+// changing (updating) attributes
+// toxicTim.id = 'what-so-ever';
+
+document.querySelectorAll("label")[0].classList.add("selected"); // this will add selected class to the classlist of first label
+
+toxicTim.classList.add("dead"); // adding "dead" class to the list of toxicTim's classes
+toxicTim.classList.remove("dead"); // remove "dead" class from toxicTim's classes
+
+// adding multiple classes
+toxicTim.classList.add("first", "second");
+
+// remove multiple classes
+toxicTim.classList.remove("first", "second");

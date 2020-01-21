@@ -99,6 +99,10 @@ html * {
   filter: grayscale(1);
 }
 
+.selected {
+  background-color: yellow;
+}
+
 #toxic-tim {
   background-image: url(../images/toxic_tim.jpg);
 }
