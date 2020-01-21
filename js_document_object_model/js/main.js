@@ -23,3 +23,10 @@ const allTeamTealDoggosButFirst = document.querySelectorAll(
 const secondDoggos = document.querySelectorAll(
   ".team .roster .doggo:nth-child(2)"
 );
+
+// Looping through an HTML collection
+// for (let doggo of allDoggoFighters) {
+//     console.log(doggo);
+// }
+// allDoggoFighters.forEach(doggo => console.log(doggo));
+
