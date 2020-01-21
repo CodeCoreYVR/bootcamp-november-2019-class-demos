@@ -57,3 +57,13 @@ toxicTim.matches("#toxic-tim"); // true
 toxicTim.matches("div"); // true
 toxicTim.matches(".doggo.fighter"); // true
 toxicTim.matches(".dsalfkjsalkf"); // false
+
+// closest
+// <node>.closest('css-selector');
+
+// so the above 👆 searches for all the ancestors of (beginning with itself)
+// for the first node that matches the line, if no matching ancestor node, then returns
+// null. It can be thought as reverse .querySelector(...)
+
+toxicTim.closest("div"); // <div id="toxic-tim" class="doggo fighter">...</div>
+toxicTim.closest(".team"); // <div class="team salmon">...</div>
