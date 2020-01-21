@@ -78,4 +78,15 @@ toxicTim.style.borderRadius = "20px";
 // styling elements using bracket notation []
 toxicTim.style["background-color"] = "maroon";
 
+getComputedStyle(toxicTim); // to get the actual computed style of a node
+
+// Changing the content of nodes
+// There are 4 properties that we use to change DOM content they are:
+// .innerHTML, .innerText, .outerHTML, .outerText
+
+teamSalmon.innerHTML; // that will return the innerHTML of teamSalmon node
+teamSalmon.innerText; // returns all of the content within the HTML tags
+
+// The versions with .outer are nearly the same, except they include the node itself as well
+
 
