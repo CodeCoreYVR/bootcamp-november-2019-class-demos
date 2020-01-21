@@ -67,3 +67,15 @@ toxicTim.matches(".dsalfkjsalkf"); // false
 
 toxicTim.closest("div"); // <div id="toxic-tim" class="doggo fighter">...</div>
 toxicTim.closest(".team"); // <div class="team salmon">...</div>
+
+// Styling nodes with javascript
+toxicTim.style.border = "10px solid black";
+toxicTim.style.borderRadius = "20px";
+
+// styling all the divs in our document
+// divs.forEach(div => div.style.border = "10px solid brown")
+
+// styling elements using bracket notation []
+toxicTim.style["background-color"] = "maroon";
+
+
