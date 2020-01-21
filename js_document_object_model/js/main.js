@@ -30,3 +30,23 @@ const secondDoggos = document.querySelectorAll(
 // }
 // allDoggoFighters.forEach(doggo => console.log(doggo));
 
+const inbreadDog = document.querySelector("#inbread-dog");
+inbreadDog.nextElementSibling; // gets Larry The Lion which is next sibling to in bread doggo
+inbreadDog.previousElementSibling; // return null brcause, there are no previous siblings
+
+teamSalmon.children[1]; // div.roster
+teamSalmon.children[1].children; // roster children
+
+document.querySelector(".team.salmon .roster").children;
+
+document
+  .querySelector(".team.salmon .roster")
+  .children.namedItem("nina-the-ninja");
+
+toxicTim.parentElement; // roster
+toxicTim.parentElement.parentElement; // team salmon
+toxicTim.parentElement.parentElement.parentElement; // teams
+
+document.querySelector("html").firstElementChild; // returns the first child to HTML
+
+document.querySelector("html").lastElementChild; // returns the last child to HTML Document
