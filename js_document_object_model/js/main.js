@@ -108,3 +108,10 @@ toxicTim.classList.add("first", "second");
 
 // remove multiple classes
 toxicTim.classList.remove("first", "second");
+
+// getAttribute, setAttribute
+toxicTim.getAttribute("class"); // that will return toxicTim class attribute
+// toxicTim.setAttribute("class", "dead"); // that sets toxicTim class to dead
+
+// removing attributes
+// toxicTim.removeAttribute("class"); // that will remove toxicTim's class attribute
