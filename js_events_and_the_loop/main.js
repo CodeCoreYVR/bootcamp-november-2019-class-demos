@@ -26,6 +26,13 @@ teamSalmon.addEventListener("click", event => {
 
 toxicTeam.addEventListener("click", event => {
   //   console.log("Toxic was clicked!");
+  const { target, currentTarget, clientX, clientY } = event;
+  console.log("target: ", target);
+  console.log("currentTarget: ", currentTarget);
+  console.log(`Cursor Position: ${clientX}, ${clientY}`);
+
+  // this will refer to Window because we are using arrow function above
+  console.log("this: ", this);
 });
 
 const printMessage = element => {
