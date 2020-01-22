@@ -173,3 +173,7 @@ html * {
 .flipped {
   transform: rotate(180deg);
 }
+
+.mono {
+  filter: grayscale(100%);
+}

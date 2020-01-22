@@ -134,3 +134,18 @@ document.querySelectorAll(".doggo.fighter").forEach(doggo => {
     event.currentTarget.classList.remove("flipped");
   });
 });
+
+// Crouching mouse hidden doggo
+// 1. Go to the doggo Arena Demo Page
+// 2. Moving the mouse inside a doggo should make it monochrome
+// Hint: Use a class and CSS!
+// 3. Moving the mouse outside a doggo should reset its monochrome
+
+document.querySelectorAll(".doggo.fighter").forEach(doggo => {
+  doggo.addEventListener("mouseover", event => {
+    event.currentTarget.classList.add("mono");
+  });
+  doggo.addEventListener("mouseleave", event => {
+    event.currentTarget.classList.remove("mono");
+  });
+});
