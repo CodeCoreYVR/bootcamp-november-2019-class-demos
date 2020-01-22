@@ -94,3 +94,12 @@ function a() {
 
 a();
 */
+const doggos = document.querySelectorAll(".doggo.fighter");
+doggos.forEach(doggo => {
+  doggo.addEventListener("click", event => {
+    const clickedDoggo = event.currentTarget;
+    const parentNode = clickedDoggo.parentElement;
+    // const parentNode = clickedDoggo.closest(".roster");
+    parentNode.append(clickedDoggo);
+  });
+});
