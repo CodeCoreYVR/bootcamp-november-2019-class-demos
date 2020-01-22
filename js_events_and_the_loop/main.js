@@ -93,7 +93,7 @@ function a() {
 }
 
 a();
-*/
+
 const doggos = document.querySelectorAll(".doggo.fighter");
 doggos.forEach(doggo => {
   doggo.addEventListener("click", event => {
@@ -101,5 +101,36 @@ doggos.forEach(doggo => {
     const parentNode = clickedDoggo.parentElement;
     // const parentNode = clickedDoggo.closest(".roster");
     parentNode.append(clickedDoggo);
+  });
+});
+*/
+// Mouse Events
+
+// 1. invert doggo color on double click
+// 2. Explore the MouseEvent Object
+// 3. Rotate a doggo on mouse down
+// 4. Mouse up resets doggo rotation
+
+document.querySelectorAll(".doggo.fighter").forEach(doggo => {
+  // double click "dblclick"
+  doggo.addEventListener("dblclick", event => {
+    console.log(`${event.currentTarget.id} was double clicked!`);
+    event.currentTarget.classList.toggle("inverted"); // add/remove
+    console.log("event: ", event);
+  });
+
+  // mousedown
+  doggo.addEventListener("mousedown", event => {
+    event.currentTarget.classList.add("flipped");
+  });
+
+  // mouseup
+  doggo.addEventListener("mouseup", event => {
+    event.currentTarget.classList.remove("flipped");
+  });
+
+  // mouseleave
+  doggo.addEventListener("mouseleave", event => {
+    event.currentTarget.classList.remove("flipped");
   });
 });
