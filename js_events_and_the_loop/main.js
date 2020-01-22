@@ -234,3 +234,32 @@ document.addEventListener("DOMContentLoaded", () => {
       blankDoggo.style.border = `1px solid black`;
     });
 });
+
+document
+  .querySelector('input[name="name"]')
+  .addEventListener("input", event => {
+    const fieldValue = event.currentTarget.value;
+    if (fieldValue === "panic") {
+      window.location.replace("http://hackertyper.net");
+    }
+  });
+
+//   Keyboard events
+document.addEventListener("keydown", event => {
+  //   console.log(event);
+  const {
+    currentTarget,
+    target,
+    keyCode,
+    altKey,
+    shiftKey,
+    metaKey,
+    key
+  } = event;
+
+  console.log("key: ", keyCode);
+
+  if (altKey && shiftKey && keyCode === 73) {
+    window.location.href = "http://nyan.cat";
+  }
+});
