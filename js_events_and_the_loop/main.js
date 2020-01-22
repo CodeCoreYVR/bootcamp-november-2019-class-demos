@@ -167,3 +167,40 @@ document.addEventListener("mousemove", event => {
   const position = `${event.clientX}, ${event.clientY}`;
   coorDiv.innerText = position;
 });
+
+// Type Loudly & Explode on Submit
+const random = n => Math.ceil(Math.random() * n);
+
+const keySound = () => new Audio(`sounds/vintage-keyboard-${random(5)}.wav`);
+
+document.querySelectorAll("input").forEach(inputField => {
+  inputField.addEventListener("input", event => {
+    // console.log("typing...");
+    keySound().play();
+  });
+});
+
+const explosion = () => new Audio("sounds/small-explosion.wav");
+
+document.querySelector("form").addEventListener("submit", event => {
+  event.preventDefault();
+  // PreventDefault: prevents the default reload behaviour of browser
+  explosion().play();
+});
+
+// Applicant;s Avatar
+// 1. Go to Demo App
+// 2. Replace the applicant preview image's srce (on the left) with the
+//  image URL entered in the field
+
+const applicantPreview = document.querySelector(
+  "#applicant-preview .doggo.blank"
+);
+
+document
+  .querySelector('input[name="picture-url"]')
+  .addEventListener("input", event => {
+    const imageUrl = event.currentTarget.value;
+    console.log("Image URL: ", imageUrl);
+    applicantPreview.style.backgroundImage = `url(${imageUrl})`;
+  });
