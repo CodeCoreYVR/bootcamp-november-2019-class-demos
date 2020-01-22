@@ -202,5 +202,35 @@ document
   .addEventListener("input", event => {
     const imageUrl = event.currentTarget.value;
     console.log("Image URL: ", imageUrl);
-    applicantPreview.style.backgroundImage = `url(${imageUrl})`;
+    // applicantPreview.style.backgroundImage = `url(${imageUrl})`;
   });
+
+// DOMContentLoaded
+//   Create a doggo on submit
+
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .querySelector("#application-form")
+    .addEventListener("submit", event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      // To easily access all of the input field values within a form
+      // use the FormData constructor like below, passing it the form
+      //  as an argument
+      const formData = new FormData(form);
+      //   console.log(form);
+      //   To get the value of the input fields in the form by their, we use the 'get'
+      // method on the formData instance
+      formData.get("name");
+      formData.get("picture-url");
+      formData.get("team-name");
+
+      const blankDoggo = document.querySelector(
+        "#applicant-preview .doggo.blank"
+      );
+
+      blankDoggo.style.backgroundImage = `url(${formData.get("picture-url")})`;
+      blankDoggo.querySelector("h1").innerText = formData.get("name");
+      blankDoggo.style.border = `1px solid black`;
+    });
+});
