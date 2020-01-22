@@ -263,3 +263,7 @@ document.addEventListener("keydown", event => {
     window.location.href = "http://nyan.cat";
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM content loaded");
+});
