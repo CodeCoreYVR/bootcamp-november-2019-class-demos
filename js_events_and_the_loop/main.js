@@ -149,3 +149,21 @@ document.querySelectorAll(".doggo.fighter").forEach(doggo => {
     event.currentTarget.classList.remove("mono");
   });
 });
+
+// Where is my cursor?
+// 1. Go to the Doggo Arena Demo Page
+// 2. Create a node displayed in the lower left corner of the page
+// 3. It should display X & Y coordinates of mouse cursor live.
+//  Hint: Use the mousemove event!
+
+const coorDiv = document.createElement("div");
+coorDiv.style.position = "fixed";
+coorDiv.style.bottom = 0;
+coorDiv.style.backgroundColor = "white";
+
+document.querySelector("body").append(coorDiv);
+
+document.addEventListener("mousemove", event => {
+  const position = `${event.clientX}, ${event.clientY}`;
+  coorDiv.innerText = position;
+});
