@@ -27,4 +27,46 @@ $(document).ready(() => {
     event.stopPropagation();
     log("event bubbling button was clicked!");
   });
+
+  // Event capturing
+  const captureButton = document.querySelector("#event-capturing-button");
+  const eventCapturingContainer = document.querySelector(
+    ".event-capturing-container"
+  );
+  const eventsContainer = document.querySelector(".events");
+  const documentBody = document.querySelector("body");
+
+  // Note: to activiate capturing phase we need
+  // to pass 'true' argument to addEventListener function
+
+  captureButton.addEventListener(
+    "click",
+    event => {
+      console.log("event capturing button was clicked!");
+    },
+    true
+  );
+  eventCapturingContainer.addEventListener(
+    "click",
+    event => {
+      console.log("capturing button container was clicked!");
+    },
+    true
+  );
+
+  eventsContainer.addEventListener(
+    "click",
+    event => {
+      console.log("events container was clicked!");
+    },
+    true
+  );
+
+  documentBody.addEventListener(
+    "click",
+    event => {
+      console.log("Document was clicked!");
+    },
+    true
+  );
 });
