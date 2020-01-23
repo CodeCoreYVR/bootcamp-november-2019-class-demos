@@ -84,3 +84,20 @@ $("body section")
   .prepend(container);
 // 3. Append a 'small black circle' to the container.
 $(container).append('<div class="small black circle shape"></div>');
+
+// document.addEventListener('DOMContentLoaded') is equivallent to:
+// $(document).ready()
+$(document).ready(function() {
+  // console.log("everything is loaded to the page and DOM is ready");
+  $(".blue.circle").on("mouseenter", event => {
+    console.log("blue circle: go away!");
+  });
+
+  $(".blue.circle").on("mouseleave", event => {
+    console.log("blue circle: good bye!");
+  });
+
+  $("#button-1").on("click", event => {
+    $(".shape").remove();
+  });
+});
