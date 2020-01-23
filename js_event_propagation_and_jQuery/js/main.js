@@ -28,3 +28,16 @@ $("li a").attr("href", "http://nyan.cat");
 $(".blue.shape")
   .removeClass("blue")
   .addClass("red");
+
+// Exercise: Practice
+// Set the class attribute of all anchors to highlight with attr method
+$("a").attr("class", "highlight");
+// Replace all circle classes with the diamond class
+$(".circle.shape")
+  .removeClass("circle")
+  .addClass("diamond");
+// Remove all shapes in the purple & green container
+$("#purple-container .shape, #green-container .shape").remove();
+$("#purple-container, #green-container")
+  .find(".shape")
+  .remove();
