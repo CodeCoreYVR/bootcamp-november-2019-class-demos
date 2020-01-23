@@ -89,15 +89,39 @@ $(container).append('<div class="small black circle shape"></div>');
 // $(document).ready()
 $(document).ready(function() {
   // console.log("everything is loaded to the page and DOM is ready");
+  // Demo Events with on
+  // 1. When mouse enters blue circle
   $(".blue.circle").on("mouseenter", event => {
     console.log("blue circle: go away!");
   });
 
+  // 2. When mouse leaves blue circle
   $(".blue.circle").on("mouseleave", event => {
     console.log("blue circle: good bye!");
   });
 
+  // 3. When button-1 is clicked
   $("#button-1").on("click", event => {
     $(".shape").remove();
+  });
+
+  // Exercise Practice
+  // 1. When button-2 is clicked, disable it
+  $("#button-2").on("click", function(event) {
+    $(this).attr("disabled", "true");
+  });
+  // 2. When button-3 is clicked, set the button message to 'Button 3 was clicked'
+  $("#button-3").on("click", event => {
+    $("#button-message").text("Button 3 was clicked");
+  });
+  // 3. When your mouse enters any 'tr', add the highlight to it.
+  $("tr").on("mouseenter", event => {
+    const { currentTarget } = event;
+    $(currentTarget).addClass("highlight");
+  });
+  // 4. When a mouse leaves any 'tr' remove the highlight class from it
+  $("tr").on("mouseleave", event => {
+    const { currentTarget } = event;
+    $(currentTarget).removeClass("highlight");
   });
 });
