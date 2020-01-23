@@ -74,3 +74,13 @@ const smallBlueDiamond = $('<div class="small blue diamond shape"></div>');
 $(".container").append(smallBlueDiamond);
 // 3. prepend a new link 'http://nyan.cat' to the link list
 $("ul").prepend('<li><a href="http://nyan.cat">Nyan Cat</a></li>');
+
+// Exercise: Practice
+// 1. Create a div with the 'container' class.
+const container = $('<div class="container"></div>');
+// 2. Prepend it to the first section tag in the body.
+$("body section")
+  .first()
+  .prepend(container);
+// 3. Append a 'small black circle' to the container.
+$(container).append('<div class="small black circle shape"></div>');
