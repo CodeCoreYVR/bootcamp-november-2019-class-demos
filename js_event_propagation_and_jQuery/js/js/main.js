@@ -20,3 +20,11 @@ $("li a");
 $(".small.grey.circle.shape");
 // count the number of blue circles
 $(".blue.circle.shape").length;
+
+// Demo: Attributes, Classes & Removal
+// Set href attribute of all links in the page to 'http://nyan.cat'
+$("li a").attr("href", "http://nyan.cat");
+// Remove the blue class from all shapes and replace it with the red class
+$(".blue.shape")
+  .removeClass("blue")
+  .addClass("red");
