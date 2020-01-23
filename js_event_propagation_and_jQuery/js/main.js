@@ -41,3 +41,15 @@ $("#purple-container .shape, #green-container .shape").remove();
 $("#purple-container, #green-container")
   .find(".shape")
   .remove();
+
+// Iterating over a jQuery collection
+$(".shape").first();
+$(".shape").last();
+// get a node at a specific index
+$(".shape").eq(2);
+$(".shape").eq(3);
+
+// This method returns a jQuery wrapped object so that we can still use
+// all jquery methods on it as opposed to:
+$(".shape")[0];
+
