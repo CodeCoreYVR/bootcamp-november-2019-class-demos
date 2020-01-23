@@ -66,3 +66,11 @@ $("#reset").html("Lauch Doggos!");
 $("td").html("yass");
 // Select parents of all td tags
 $("td").parent();
+
+// Demo: Creating Nodes, append, and prepend
+// 1. create a small blue diamond with $
+const smallBlueDiamond = $('<div class="small blue diamond shape"></div>');
+// 2. append small blue diamonds to all containers
+$(".container").append(smallBlueDiamond);
+// 3. prepend a new link 'http://nyan.cat' to the link list
+$("ul").prepend('<li><a href="http://nyan.cat">Nyan Cat</a></li>');
