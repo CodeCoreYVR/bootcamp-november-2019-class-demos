@@ -53,3 +53,16 @@ $(".shape").eq(3);
 // all jquery methods on it as opposed to:
 $(".shape")[0];
 
+// Demo: html, children, and parent
+// Get html of the reset button
+$("#reset").html();
+// Try to get html of all links
+$("li a").map((index, link) => $(link).html());
+// Change reset button to read "Launch Doggos!"
+$("#reset").html("Lauch Doggos!");
+
+// Exercise: practice
+// Replace content of all 'td's with 'yass'
+$("td").html("yass");
+// Select parents of all td tags
+$("td").parent();
