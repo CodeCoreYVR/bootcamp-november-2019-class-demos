@@ -37,3 +37,12 @@ students.onload = () => {
 
 // Up to here, we defined our request and finally we need to send it
 students.send();
+
+// send a request to get all departments
+const departments = new XMLHttpRequest();
+departments.open("GET", "http://localhost:3000/departments");
+
+departments.onload = () =>
+  console.log("departments: ", JSON.parse(departments.responseText));
+
+departments.send();
