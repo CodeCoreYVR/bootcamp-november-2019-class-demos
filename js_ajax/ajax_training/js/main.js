@@ -50,11 +50,34 @@ departments.send();
 // Sending a request with jquery ajax
 const fetchDataButton = document.querySelector("#fetch-data");
 
-fetchDataButton.addEventListener("click", () => {
-  $.ajax({
-    url: "http://localhost:3000/students",
-    success: (responseData, responseStatus, xhrAjaxRequest) => {
-      console.info("Data: ", responseData);
-    }
+if (false) {
+  fetchDataButton.addEventListener("click", () => {
+    $.ajax({
+      url: "http://localhost:3000/students",
+      success: (responseData, responseStatus, xhrAjaxRequest) => {
+        console.info("Data: ", responseData);
+      }
+    });
   });
+
+  // Fetch data using 'fetch'
+  // fetchDataButton.addEventListener("click", () => {
+  //   fetch("http://localhost:3000/departments")
+  //     .then(res => res.json())
+  //     .then(res => console.info(res));
+  // });
+
+  fetchDataButton.addEventListener("click", async () => {
+    const response = await fetch("http://localhost:3000/departments");
+    const jsonData = await response.json();
+    console.info("Data: ", jsonData);
+  });
+}
+// Axios
+fetchDataButton.addEventListener("click", async () => {
+  const response = await axios.get("http://localhost:3000/students");
+  console.log("Data: ", response.data);
 });
+
+// use superagent to send a request to get all departments
+
