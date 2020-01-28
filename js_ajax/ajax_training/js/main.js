@@ -46,3 +46,15 @@ departments.onload = () =>
   console.log("departments: ", JSON.parse(departments.responseText));
 
 departments.send();
+
+// Sending a request with jquery ajax
+const fetchDataButton = document.querySelector("#fetch-data");
+
+fetchDataButton.addEventListener("click", () => {
+  $.ajax({
+    url: "http://localhost:3000/students",
+    success: (responseData, responseStatus, xhrAjaxRequest) => {
+      console.info("Data: ", responseData);
+    }
+  });
+});
