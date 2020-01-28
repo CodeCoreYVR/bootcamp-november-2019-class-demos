@@ -72,12 +72,16 @@ if (false) {
     const jsonData = await response.json();
     console.info("Data: ", jsonData);
   });
+
+  // Axios
+  fetchDataButton.addEventListener("click", async () => {
+    const response = await axios.get("http://localhost:3000/students");
+    console.log("Data: ", response.data);
+  });
 }
-// Axios
-fetchDataButton.addEventListener("click", async () => {
-  const response = await axios.get("http://localhost:3000/students");
-  console.log("Data: ", response.data);
-});
-
 // use superagent to send a request to get all departments
-
+fetchDataButton.addEventListener("click", () => {
+  superagent
+    .get("http://localhost:3000/departments")
+    .then(res => console.log(JSON.parse(res.text)));
+});
