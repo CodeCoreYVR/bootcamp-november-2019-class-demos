@@ -104,6 +104,11 @@ if (false) {
 // 2. Get the id of the question and send a get request to get the question
 // 3. Navigate to question show and render the fetched question
 
+// Creating a question
+// 1. Add an event listener to new question form
+// 2. Get the form data with 'FormData' and use it to create a new question
+// 3. reset the form and display the newly created question
+
 // Render questions on the page
 const renderQuestions = questions => {
   const questionsContainer = document.querySelector("div.question-list");
@@ -203,5 +208,23 @@ document.addEventListener("DOMContentLoaded", () => {
       const { id } = questionLink.dataset;
       getAndDisplayQuestion(id);
     }
+  });
+
+  // Create a question
+  const newQuestionForm = document.querySelector("#new-question-form");
+  newQuestionForm.addEventListener("submit", event => {
+    event.preventDefault();
+    const fd = new FormData(event.currentTarget);
+    const newQuestion = {
+      title: fd.get("title"),
+      body: fd.get("body")
+    };
+
+    Question.create(newQuestion).then(question => {
+      // reset form
+      newQuestionForm.reset();
+      // display the newly created question
+      getAndDisplayQuestion(question.id);
+    });
   });
 });
