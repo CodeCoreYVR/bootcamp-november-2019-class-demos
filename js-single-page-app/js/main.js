@@ -99,6 +99,12 @@ if (false) {
 // 3. Fetch all questions when user clicks on Questions link in navigation bar
 // 4. Render the questions page with fetched questions
 
+// Getting a single question with id
+// 1. Adding an event listener to questions container to grab the clicked question
+// 2. Get the id of the question and send a get request to get the question
+// 3. Navigate to question show and render the fetched question
+
+// Render questions on the page
 const renderQuestions = questions => {
   const questionsContainer = document.querySelector("div.question-list");
   const htmlString = questions
@@ -115,11 +121,11 @@ const renderQuestions = questions => {
   questionsContainer.innerHTML = htmlString;
 };
 
-// 3. fetch all question
+// fetch all question
 const refreshQuestions = () =>
   Question.all().then(questions => renderQuestions(questions));
 
-// 2.Navigation
+// Navigation
 const navigateTo = (id, clickedLink) => {
   if (id === "question-index") {
     // get all questions
@@ -141,8 +147,43 @@ const navigateTo = (id, clickedLink) => {
   }
 };
 
+// Getting a single question and rendering it on page
+// render a single question on the page
+const renderQuestionDetails = question => {
+  const questionDetailsContainer = document.querySelector("#question-show");
+  const htmlString = `
+    <div class="ui segment question-show-container">
+      <div class="ui header">${question.title}</div>
+      <p>${question.body}</p>
+      <small>Asked by: ${question.author.full_name}</small>
+      <a class="ui small right floated orange button link" data-target="question-edit" data-id="${
+        question.id
+      }" href="">Edit</a>
+    </div>
+    <div class="ui segment">
+      <h3 class="ui horizontal divider">Answers</h3>
+      <ul class="ui relaxed divided list">
+      ${question.answers
+        .map(answer => `<div class="item">${answer.body}</div>`)
+        .join("")}
+        </ul>
+      </div>
+    </div>
+  `;
+
+  questionDetailsContainer.innerHTML = htmlString;
+};
+
+// Get a single question and navigate to question show page
+const getAndDisplayQuestion = id => {
+  Question.one(id).then(question => {
+    renderQuestionDetails(question);
+    navigateTo("question-show");
+  });
+};
+
 document.addEventListener("DOMContentLoaded", () => {
-  // 1.
+  // getting all question event listener
   document.querySelector(".navbar").addEventListener("click", event => {
     event.preventDefault();
     const link = event.target.closest("[data-target]");
@@ -151,6 +192,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const targetPage = link.getAttribute("data-target");
       // Handle Navigation
       navigateTo(targetPage, link);
+    }
+  });
+  // Event listener for questions container to get a single question
+  const questionsContainer = document.querySelector("div.question-list");
+  questionsContainer.addEventListener("click", event => {
+    const questionLink = event.target.closest("a.question-link");
+    if (questionLink) {
+      event.preventDefault();
+      const { id } = questionLink.dataset;
+      getAndDisplayQuestion(id);
     }
   });
 });
