@@ -31,6 +31,8 @@ const Question = {
   },
   // Update a question
   update(id, params) {
+    // params is the updated question object
+    // { title: "updated title", body: "updated body"}
     return fetch(`${baseUrl}/questions/${id}`, {
       method: "PATCH",
       credentials: "include",
@@ -109,6 +111,18 @@ if (false) {
 // 2. Get the form data with 'FormData' and use it to create a new question
 // 3. reset the form and display the newly created question
 
+// Update a question
+// 1. Add an event listener to `edit` button in question-show container
+// 2. Populate question-edit-form with current question data
+// 3. add an event listener to question-edit-form
+// 4. get the updated question data from the form and update the question
+// 5. clear the form and display the updated question
+
+// Delete a question
+// 1. Add delete button question question show page
+// 2. Add an event listener to it(we already have an event listener on question-show that we are using for 'edit' and we gonna add 'delete' as well)
+// 3. Delete the question and redirect to questions index page
+
 // Render questions on the page
 const renderQuestions = questions => {
   const questionsContainer = document.querySelector("div.question-list");
@@ -164,6 +178,9 @@ const renderQuestionDetails = question => {
       <a class="ui small right floated orange button link" data-target="question-edit" data-id="${
         question.id
       }" href="">Edit</a>
+      <a class="ui small right floated red button link" data-target="question-delete" data-id="${
+        question.id
+      }" href="">Delete</a>
     </div>
     <div class="ui segment">
       <h3 class="ui horizontal divider">Answers</h3>
@@ -183,7 +200,20 @@ const renderQuestionDetails = question => {
 const getAndDisplayQuestion = id => {
   Question.one(id).then(question => {
     renderQuestionDetails(question);
-    navigateTo("question-show");
+  });
+  navigateTo("question-show");
+};
+
+// update a question
+// populate edit form with the question
+const populateForm = id => {
+  Question.one(id).then(question => {
+    document.querySelector('#edit-question-form [name="id"]').value =
+      question.id;
+    document.querySelector('#edit-question-form [name="title"]').value =
+      question.title;
+    document.querySelector('#edit-question-form [name="body"]').value =
+      question.body;
   });
 };
 
@@ -224,6 +254,45 @@ document.addEventListener("DOMContentLoaded", () => {
       // reset form
       newQuestionForm.reset();
       // display the newly created question
+      getAndDisplayQuestion(question.id);
+    });
+  });
+
+  // Update a question
+  document.querySelector("#question-show").addEventListener("click", event => {
+    const link = event.target.closest("[data-target]");
+    if (link) {
+      event.preventDefault();
+      const targetPage = link.getAttribute("data-target");
+      if (targetPage === "question-delete") {
+        // Delete question
+        Question.destroy(link.getAttribute("data-id")).then(() => {
+          // Then navigate to question index
+          navigateTo("question-index");
+        });
+      } else {
+        // populate question edit form
+        populateForm(link.getAttribute("data-id"));
+        // navigate to question-edit page
+        navigateTo(targetPage);
+      }
+    }
+  });
+
+  const editQuestionForm = document.querySelector("#edit-question-form");
+  editQuestionForm.addEventListener("submit", event => {
+    event.preventDefault();
+
+    const fd = new FormData(event.currentTarget);
+    const updatedQuestion = {
+      title: fd.get("title"),
+      body: fd.get("body")
+    };
+
+    Question.update(fd.get("id"), updatedQuestion).then(question => {
+      // clear the form
+      editQuestionForm.reset();
+      // display updated question
       getAndDisplayQuestion(question.id);
     });
   });
