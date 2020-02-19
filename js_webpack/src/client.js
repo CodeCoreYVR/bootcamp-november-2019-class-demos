@@ -1,24 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 
 import manyCats from "./images/manyArmsManyCats.png";
 
-console.log(manyCats);
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   const img = document.createElement("img");
-//   img.src = manyCats;
-//   img.style.borderRadius = "20px";
-//   img.style.filter = "blur(1px) sepia(1) hue-rotate(50deg)";
-//   img.style.height = "500px";
-
-//   document.querySelector("body").append(img);
-// });
+const position = [49.2123657, -122.9215445];
 
 const App = () => {
   return (
     <main>
-      <h1 style={{ fontFamily: "sans-serif" }}>Here's a picture!</h1>
+      <Map center={position} zoom={15} style={{ height: "800px" }}>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+        <Marker position={position}>
+          <Popup>
+            Codecore College
+            <br />
+            New Westminster BC, V3M 6Z1
+          </Popup>
+        </Marker>
+      </Map>
+
+      <h1 style={{ fontFamily: "sans-serif" }}>Lady with cats</h1>
       <img
         src={manyCats}
         alt="Many Cats Many Arms"

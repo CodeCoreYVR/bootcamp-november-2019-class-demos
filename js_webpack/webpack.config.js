@@ -55,7 +55,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: "Webpack Demo", // <title> of the web page
-      chunks: ["client"]
+      chunks: ["client"],
+      template: path.join(__dirname, "src", "index.html")
       // Only include the bundle named "client" ignoring
       // every other bundle.
     })
